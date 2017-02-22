@@ -1,10 +1,19 @@
-import { Component } from '@angular/core';
+import {Component, ViewEncapsulation} from '@angular/core';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
-  styleUrls: ['./app.component.css']
+  styleUrls: ['./app.component.css'],
+  encapsulation: ViewEncapsulation.Native
 })
 export class AppComponent {
-  title = 'app works!';
+  public title: string = 'app works!';
+  public isLoad: boolean = true;
+
+  public constructor() {
+  }
+
+  public getValue(): void {
+
+  }
 }
