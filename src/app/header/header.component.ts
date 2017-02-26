@@ -1,16 +1,36 @@
-import {Component, OnInit, ViewEncapsulation} from '@angular/core';
+import {
+  AfterContentInit, Component, ContentChild, OnInit, ContentChildren,
+  QueryList, ViewEncapsulation
+} from '@angular/core';
+import { SearchComponent } from './search/search.component';
+@Component(
+  {
+    selector: 'app-header',
+    templateUrl: './header.component.html',
+    styleUrls: ['./header.component.css'],
+    encapsulation: ViewEncapsulation.Native
+  }
+)
+export class HeaderComponent implements OnInit, AfterContentInit {
 
-@Component({
-  selector: 'app-header',
-  templateUrl: './header.component.html',
-  styleUrls: ['./header.component.css'],
-  encapsulation: ViewEncapsulation.Native
-})
-export class HeaderComponent implements OnInit {
 
-  constructor() { }
+  public title: string = 'Our company';
+  public isLogo: boolean = true;
+  public width: number = 25;
+  public placeholder: string = 'myplaceholder';
 
-  ngOnInit() {
+  public searchTerm: string = 'Igor';
+
+  public constructor() {
+  }
+
+  public ngOnInit(): void {
+    setTimeout(()=>{
+      console.log(this.searchTerm)
+    },10000)
+  }
+
+  public ngAfterContentInit(): void {
   }
 
 }

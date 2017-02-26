@@ -6,17 +6,21 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 
-import {LibraryModule} from './library/library.module'
+import { LibraryModule } from './library/library.module';
 
-@NgModule({
-  declarations: [
-    AppComponent
-  ],
-  imports: [
-    BrowserModule,
-    LibraryModule
-  ],
 
-  bootstrap: [AppComponent]
-})
-export class AppModule { }
+@NgModule(
+  {
+    declarations: [
+      AppComponent
+    ],
+    imports: [
+      BrowserModule,
+      LibraryModule
+    ],
+
+    bootstrap: [AppComponent]
+  }
+)
+export class AppModule {
+}
