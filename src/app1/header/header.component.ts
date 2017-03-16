@@ -1,6 +1,6 @@
 import {
-  AfterContentInit, Component, ContentChild, OnInit, ContentChildren,
-  QueryList, ViewEncapsulation
+  AfterContentInit, Component, Output,OnInit, ContentChildren, EventEmitter,
+  QueryList, ViewEncapsulation, TemplateRef, ViewChild, ContentChild
 } from '@angular/core';
 import { SearchComponent } from './search/search.component';
 @Component(
@@ -13,6 +13,18 @@ import { SearchComponent } from './search/search.component';
 )
 export class HeaderComponent implements OnInit, AfterContentInit {
 
+  @Output()
+  public searchText: EventEmitter<string> = new EventEmitter();
+
+  /* tslint:disable */
+  @ContentChild(TemplateRef)
+  public template: TemplateRef<any>;
+  /* tslint:enable */
+
+  public context: { mytitle: string, $implicit: string } = {
+    mytitle: 'Our company',
+    $implicit: 'my desc'
+  };
 
   public title: string = 'Our company';
   public isLogo: boolean = true;
@@ -25,9 +37,11 @@ export class HeaderComponent implements OnInit, AfterContentInit {
   }
 
   public ngOnInit(): void {
-    setTimeout(()=>{
-      console.log(this.searchTerm)
-    },10000)
+    setTimeout(
+      () => {
+        console.log(this.searchTerm)
+      }, 10000
+    )
   }
 
   public ngAfterContentInit(): void {

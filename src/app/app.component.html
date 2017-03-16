@@ -1,17 +1,5 @@
-<app-header></app-header>
-<a (click)="tab='profile'">Profile</a>
-<a (click)="tab='info'">Info</a>
-<div [ngSwitch]="tab">
-  <div *ngSwitchCase="'profile'">
-    <div *ngFor="let user of users; let i = index; let isOdd = odd  " [ngClass]="{zebra:isOdd}">
-      {{i+1}}
-      <img *ngIf="user.photo" [ngStyle]="style" [src]="user.photo" [alt]="user.firstName">
-      <p>{{user.firstName}} {{user.surname}}</p>
-    </div>
-  </div>
-  <div *ngSwitchCase="'info'">
-    Info
-  </div>
-</div>
-
-
+<h3>I am template</h3>
+<app-template></app-template>
+<hr>
+<h3>I am reactive</h3>
+<app-reactive></app-reactive>

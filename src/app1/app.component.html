@@ -1,0 +1,22 @@
+<app-header (searchText)="searchTerm = $event">
+  <template let-title="mytitle" let-desc let-some>
+    <h2>{{title}}</h2>
+    <p>{{desc}}</p>
+    <p>{{some}}</p>
+  </template>
+</app-header>
+<a (click)="tab='profile'">Profile</a>
+<a (click)="tab='info'">Info</a>
+<div [ngSwitch]="tab">
+  <div *ngSwitchCase="'profile'">
+    <div *ngFor="let user of users$ | async | userFilter:searchTerm; let i = index; let isOdd = odd  " >
+
+      <app-user-card *appDelay="i" [user]="user"></app-user-card>
+
+    </div>
+  </div>
+  <div *ngSwitchCase="'info'">
+    Info
+  </div>
+</div>
+

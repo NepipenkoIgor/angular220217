@@ -1,0 +1,5 @@
+<!--<h1  [style.width.%]="width" [class.logo]="isLogo" [innerHTML]="title"></h1>-->
+
+<template [ngTemplateOutlet]="template" [ngOutletContext]="context" ></template>
+
+<app-search [placeholder]="placeholder" [search]="''" (searchChange)="searchText.emit($event)"></app-search>

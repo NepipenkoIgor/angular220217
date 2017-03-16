@@ -1,0 +1,22 @@
+<form #f="ngForm" (ngSubmit)="toServer(f.value)">
+  <div>
+    Name:
+    <input type="text" name="name" ngModel  minlength="7" required>
+  </div>
+  <div>
+    Phone:
+    <input type="text" name="phone"  ngModel minlength="10" required>
+  </div>
+  <div ngModelGroup="password">
+    <div>
+      Password:
+      <input type="text" name="npass"  ngModel minlength="6" required>
+    </div>
+    <div>
+      Repeat Password:
+      <input type="text" name="rpass"  ngModel minlength="6" required>
+    </div>
+  </div>
+
+  <button type="submit" [disabled]="f.invalid">Submit</button>
+</form>
