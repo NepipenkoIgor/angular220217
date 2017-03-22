@@ -1,0 +1,52 @@
+<form [formGroup]="myForm" (ngSubmit)="toServer(myForm.value)">
+  <div>
+    Name:
+    <input type="text" [formControl]="myForm.controls['name']">
+  </div>
+  <div>
+    Phone:
+    <input type="text" [formControl]="myForm.controls['phone']">
+  </div>
+  <div formGroupName="password">
+    <div>
+      Password:
+      <input type="text" formControlName="npass">
+    </div>
+    <div>
+      Repeat Password:
+      <input type="text" formControlName="rpass">
+    </div>
+  </div>
+  <button type="submit" [disabled]="myForm.invalid">Submit</button>
+</form>
+{{myForm.controls['phone'].errors | json}}
+
+
+<div [formGroup]="formArrayModel">
+
+  <form *ngFor="let control of formArrayModel.controls; let i =index"
+    [formGroup]="control">
+    <div>
+      Name:
+      <input type="text" [formControl]="control.controls['name']">
+    </div>
+    <div *ngIf="control.controls['phone']">
+      Phone:
+      <input type="text" [formControl]="control.controls['phone']">
+    </div>
+    <div formGroupName="password" *ngIf="control.controls['password']">
+      <div>
+        Password:
+        <input type="text" formControlName="npass">
+      </div>
+      <div>
+        Repeat Password:
+        <input type="text" formControlName="rpass">
+      </div>
+    </div>
+
+  </form>
+
+</div>
+
+<button (click)="addEmail()">Add Email</button>

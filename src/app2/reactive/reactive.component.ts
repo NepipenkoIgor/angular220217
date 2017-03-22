@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup, Validators, FormBuilder } from '@angular/forms';
+import { FormControl, FormGroup, FormArray, Validators, FormBuilder } from '@angular/forms';
 
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
@@ -14,8 +14,25 @@ import 'rxjs/add/operator/delay';
 export class ReactiveComponent implements OnInit {
 
   public myForm: FormGroup;
+  public formArrayModel: FormArray;
 
   public constructor(private _fb: FormBuilder) {
+
+    this.formArrayModel = this._fb.array([
+      this._fb.group(
+        {
+          name: ['', [Validators.minLength(7), Validators.required]],
+          phone: ['', null, [this.phoneValidator]],
+          password: this._fb.group(
+            {
+              npass: ['', [Validators.minLength(6), Validators.required]],
+              rpass: ['', [Validators.minLength(6), Validators.required]],
+            }
+          )
+        }
+      )
+    ])
+
     this.myForm = this._fb.group(
       {
         name: ['', [Validators.minLength(7), Validators.required]],
@@ -67,4 +84,22 @@ export class ReactiveComponent implements OnInit {
       .delay(5000);
   };
 
+  public addEmail(): void {
+    const preValue: string = (this.formArrayModel
+      .at(this.formArrayModel.length - 1) as FormGroup)
+      .controls['name']
+      .value;
+    this.formArrayModel.push(this._fb.group(
+      {
+        name: [preValue, [Validators.minLength(7), Validators.required]],
+        // phone: ['', null, [this.phoneValidator]],
+        // password: this._fb.group(
+        //   {
+        //     npass: ['', [Validators.minLength(6), Validators.required]],
+        //     rpass: ['', [Validators.minLength(6), Validators.required]],
+        //   }
+        // )
+      }
+    ));
+  }
 }
